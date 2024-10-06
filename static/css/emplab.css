@@ -1,0 +1,105 @@
+body {
+  background:#dddddc;
+  font-family:"bree serif";
+}
+
+.main {
+  padding: 10px;
+}
+.user {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.users .card{
+ text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  background:#f6f6f2;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+ 
+}
+.number {
+  font-size: 24px;
+  font-weight:inherit;
+}
+
+.employee-list {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #f6f6f2;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(67, 66, 66, 0.1);
+}
+.table {
+  margin: 25px 0;
+  font-size: 20px;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}.blink-container {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  border: 2px solid black;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background: #f3f3f3;
+}
+.card body{
+    padding: 20px;
+}
+.table th {
+  background-color: #badfe7;
+  color:rgb(28, 26, 26);
+}
+.table-container {
+  height:400px;
+  width:100%;
+  overflow-x: auto;
+  overflow-y: auto;
+
+}
+.sort-button {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}
+.btn{
+  background-color: #badfe7;
+  color: black;
+ 
+
+}
+.btn:hover {
+  background-color:#badfe7;
+}
+
+
+
+
+
+
+
+
+

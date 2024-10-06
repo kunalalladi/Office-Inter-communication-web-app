@@ -1,0 +1,30 @@
+{% extends "main/base.html"%}
+
+{% block title %} success {% endblock %}
+
+    {% block content %}
+
+    {% if messages %}
+{% for message in messages %}
+<div class="alert alert-info">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+    
+    <div class="global-container">
+        <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">Hurray!, The account is verified </h3>
+            <div class="card-text text-center">
+                Go to Login Page
+            </div>
+            <div class="text-center">
+            <a class="btn btn-success" href="{% url 'main:login' %}" >Login</a>
+</div>
+        </div>
+    </div>
+    </div>
+
+
+    {% endblock %}

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+  <!--This page shall be used only for the employee and the Cheif Security Officer!!-->
+  <head>
+    <title>Profile Search Page</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+      integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    .name {
+      font-weight: bold;
+      font-size: 20px;
+    }
+    .person-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+      position: relative; /* Add this line */
+    }
+
+    /*.send-request-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      margin-top: 40px;
+    }
+    */
+
+    /*.request-button {
+      padding: 10px 20px;
+      background-color: #f2f2f2;
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-align: right;
+    }*/
+
+    .box {
+      background-color: #f2f2f2;
+      padding: 20px;
+      border-radius: 5px;
+    }
+
+    .photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .person-box {
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 10px;
+      border-radius: 5px;
+    }
+
+    .navbar {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .nav-button {
+      padding: 8px 16px;
+      background-color: #f6f6f2;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th,
+    td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #pagination {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #prevBtn,
+    #nextBtn {
+      padding: 5px 10px;
+    }
+
+    #pageInfo {
+      margin: 0 10px;
+    }
+
+    .tb1 {
+      padding-top: 20px;
+    }
+
+    .heading {
+      /* margin-right: 50px; */
+      background-color: #6fb3b8;
+      padding: 0.5rem 1rem;
+    }
+    .h1 {
+      font-size: 200%;
+    }
+
+    .dropdown-menu {
+      background-color: #388087;
+    }
+
+    .main-cont {
+      background-color: #f6f6f2;
+    }
+
+    .head {
+      font-size: 25px;
+    }
+    .para {
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .img1 {
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    /*<!--Above css belongs to nav bar.-->*/
+
+    .navbar {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 10px;
+    }
+
+    .nav-button {
+      padding: 8px 16px;
+      background-color: #badfe7;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 2%;
+    }
+
+    .nav-button:not(:last-child) {
+      margin-right: 5px;
+    }
+
+    .nav-button.active {
+      background-color: #badfe7;
+    }
+
+    #searchInput {
+      width: 100%;
+      margin-top: 20px;
+      margin-bottom: 5px;
+      padding: 5px;
+    }
+
+    .domainDrop {
+      background-color: #badfe7;
+    }
+
+    #person-table {
+      background-color: #f6f6f2;
+    }
+
+  
+    /*.dots {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      margin-top: 40px;
+    }*/
+
+    .nav-button add-emp {
+      text-align: left;
+      padding: 10px 20px;
+    }
+    /*.checkbox
+    {
+      padding-left: 10px;
+    }
+    */
+    .person-box1 {
+      text-align: right;
+    }
+    input[type="checkbox"] {
+      transform: scale(2);
+    }
+
+    #prevBtn,
+    #nextBtn {
+      padding: 8px 16px;
+      background-color: #badfe7;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      padding: 5px 10px;
+    }
+
+    #pagination {
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    #pageInfo {
+      margin: 10px;
+    }
+
+    .navbar.rowsPerPage {
+      text-align: left;
+    }
+  </style>
+  <body>
+      <div id="section" class="container-fluid main-cont">
+        <!--<div class="box-nav1">-->
+          <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #388087;">
+            <a class="navbar-brand" href="#" style="color: #badfe7;">Organization</a>
+            <div class="d-lg-none ml-auto">
+              <img src="https://res.cloudinary.com/dhva31opb/image/upload/v1688822000/bell2_vrutch.png" class="img1" />
+            </div>
+            <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="color: #badfe7;">
+              <span class="navbar-toggler-icon" style="color: #badfe7;"></span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                  {% if request.user.designation == 'employee' %}
+                  <a class="nav-link" href="{% url 'main:employee_home' %}"style="color: #badfe7;">Home <span class="sr-only">(current)</span></a>
+                  {% elif request.user.designation == 'officer' %}
+                  <a class="nav-link" href="{% url 'main:officer_home' %}"style="color: #badfe7;">Home <span class="sr-only">(current)</span></a>
+                  {% elif request.user.designation == 'chief officer' %}
+                  <a class="nav-link" href="{% url 'main:chiefofficer_home' %}"style="color: #badfe7;">Home <span class="sr-only">(current)</span></a>
+                  {% endif %}
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'main:profilecard' %}"style="color: #badfe7;">Profile Search</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'CommRequests:cisolabs' %}" style="color: #badfe7;">Labs</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #badfe7;">
+                    Requests
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="common_pool_req_fin.html">common Pool</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="status(c).html"style="color: #badfe7;">Status</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #badfe7;">
+                    Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{% url 'main:profile' %}">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="{% url 'main:logout' %}">Log Out</a>
+                  </div>
+                </li>
+                <li class="nav-item active d-none d-lg-block">
+                  <img src="https://res.cloudinary.com/dhva31opb/image/upload/v1688822000/bell2_vrutch.png" class="img1" />
+                </li>
+              </ul>
+            </div>
+        </nav>
+      </div>
+      <hr />
+      <div class="heading">
+        <h1 class="navbar-brand mb-0 h1">Profile Search Page</h1>
+      </div>
+      <hr />
+      <div class="navbar filter-nav">
+        <div class="dropdown filter">
+          <button
+            class="nav-button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Domian
+          </button>
+          <ul class="dropdown-menu domainDrop" aria-labelledby="domainDropdown">
+            <li><a class="dropdown-item" href="#">ML/AI</a></li>
+            <li><a class="dropdown-item" href="#">IOT</a></li>
+            <li><a class="dropdown-item" href="#">Propulsion Systems</a></li>
+            <li><a class="dropdown-item" href="#">Avionics</a></li>
+            <li><a class="dropdown-item" href="#">Radar Monitoring</a></li>
+            <li><a class="dropdown-item" href="#">Naval Systems</a></li>
+            <li><a class="dropdown-item" href="#">Special Materials</a></li>
+          </ul>
+        </div>
+        <div class="dropdown filter1">
+          <button
+            class="nav-button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Experience
+          </button>
+          <ul class="dropdown-menu domainDrop" aria-labelledby="domainDropdown">
+            <li><a class="dropdown-item" href="#">Less than 1 year</a></li>
+            <li><a class="dropdown-item" href="#">1 - 5 years</a></li>
+            <li><a class="dropdown-item" href="#">5 - 10 years</a></li>
+            <li><a class="dropdown-item" href="#">More than 10 years</a></li>
+            <li><a class="dropdown-item" href="#">Option 5</a></li>
+          </ul>
+        </div>
+        <div class="dropdown filter1">
+          <button
+            class="nav-button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Designation
+          </button>
+          <ul class="dropdown-menu domainDrop" aria-labelledby="domainDropdown">
+            <li><a class="dropdown-item" href="#">Employee</a></li>
+            <li><a class="dropdown-item" href="#">ISO</a></li>
+            <li><a class="dropdown-item" href="#">CISO</a></li>
+          </ul>
+        </div>
+        <input type="text" id="searchInput" placeholder="Search..." />
+      </div>
+      <div class="rows-per-page">
+        <label for="rowsPerPage">Rows per page:</label>
+        <select id="rowsPerPage">
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+      {% if request.user in chief_user %}
+        <button class="nav-button add-emp">Add New Profile</button>
+        <button class="nav-button" id="deleteSelectedButton" disabled>Delete all Selected</button>
+        <button class="nav-button">Undo Edit/Delete</button>
+      {% endif %}
+      <div class="container-fluid box">
+        <table id="person-table" class="table">
+          <tbody></tbody>
+        </table>
+      </div>
+      <div id="pagination">
+        <button id="prevBtn" disabled>&lt; Prev</button>
+        <span id="pageInfo">Page 1 of 1</span>
+        <button id="nextBtn" disabled>Next &gt;</button>
+      </div>
+    </div>
+    {% comment %} <form id="compose-form" method="POST" action="{% url 'requests:default1' %}">
+      {% csrf_token %}
+      <input type="hidden" name="recipient" id="recipient-input">
+      <input type="submit" value="Compose Request">
+    </form>  {% endcomment %}
+    <form id="send-request-form" method="POST" action="{% url 'CommRequests:send_request' %}">
+      {% csrf_token %}
+      <input type="hidden" name="recipient" id="recipient-input">
+    </form>
+    
+    <script>
+      var selectedUsers = new Set();
+
+      function getCookie(name) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
+    }
+
+      function handleCheckboxChange() {
+        // Get the user ID associated with the checkbox
+        var userId = this.getAttribute('data-user-id');
+      
+        if (this.checked) {
+          selectedUsers.add(userId);
+        } else {
+          selectedUsers.delete(userId);
+        }
+      
+        // Enable or disable the delete selected button based on the selectedUsers set
+        deleteSelectedButton.disabled = selectedUsers.size === 0;
+      }
+      function openComposeRequest(person) {
+        // Get the recipient username from the person object
+        var recipientUsername = person.username;
+        
+        // Set the value of the hidden input field with the recipient username
+        var recipientInput = document.querySelector("#recipient-input");
+        recipientInput.value = recipientUsername;
+        
+        // Submit the form to the Django view
+        document.querySelector("#send-request-form").submit();
+      }
+    
+      document.addEventListener("DOMContentLoaded", function() {
+        var persons = JSON.parse('{{ users_json|safe }}');
+        var tableBody = document.querySelector("#person-table tbody");
+    
+        function populatePersonTable() {
+          tableBody.innerHTML = ''; // Clear the table body before populating
+    
+          var searchTerm = document.querySelector("#searchInput").value.toLowerCase();
+          var foundResults = false;
+    
+          persons.forEach(function(person) {
+            var checkboxCell = document.createElement("td");
+            
+            var fullName = person.fullName.toLowerCase();
+            var row = document.createElement("tr");
+            var photoCell = document.createElement("td");
+            photoCell.innerHTML = `<img src="${person.photo}" alt="${person.fullName}" class="photo">`;
+            row.appendChild(photoCell);
+    
+            var detailsCell = document.createElement("td");
+            detailsCell.innerHTML = `
+              <div class="person-box">
+                <div class="name">${person.fullName}</div>
+                <div class="designation">Designation: ${person.designation}</div>
+                <div class="domain">Domain: ${person.domain}</div>
+                <div class="domain">Experience: ${person.experience} years</div>
+              </div>
+            `;
+            row.appendChild(detailsCell);
+            
+            var actionCell = document.createElement("td");
+            actionCell.innerHTML = `
+              <div class="table person-box">
+                <div class="table person-box1">
+                  {% if request.user in chief_user  %}
+                    <input type="checkbox" class="checkbox">
+                  {% endif %}
+                </div>
+                <div class="dropdown filter domainDrop1">
+                  <button class="nav-button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img class="dot_img" src="/static/images/three-dots-vertical.svg">
+                  </button>
+                  <div class="table person-box1"></div>
+                  <ul class="dropdown-menu domainDrop" aria-labelledby="domainDropdown">
+                    <li><a class="dropdown-item" href="#">Edit</a></li>
+                    <li><a class="dropdown-item" href="#">Delete</a></li>
+                  </ul>
+                </div>
+                <button class="nav-button send-request-button">Send Request</button>
+                <button class="nav-button">Send File</button>
+                <button class="nav-button" onclick="getMeetUrl()">Video Meet</button>
+              </div>
+            `;
+            row.appendChild(actionCell);
+    
+            // Append row to table body
+            tableBody.appendChild(row);
+    
+            // Add event listener to the "Send Request" button in the current row
+            var sendRequestButton = actionCell.querySelector('.send-request-button');
+            sendRequestButton.addEventListener('click', function() {
+              event.preventDefault();
+              openComposeRequest(person);
+            });
+    
+            foundResults = true;
+          });
+    
+          if (!foundResults) {
+            var noResultsRow = document.createElement("tr");
+            var noResultsCell = document.createElement("td");
+            noResultsCell.colSpan = 3;
+            noResultsCell.innerText = "No results found";
+            noResultsRow.appendChild(noResultsCell);
+            tableBody.appendChild(noResultsRow);
+          }
+        }
+    
+        var searchInput = document.querySelector("#searchInput");
+        searchInput.addEventListener("input", populatePersonTable);
+    
+        // Call the function to populate the person table
+        populatePersonTable();
+    
+        // Get the delete selected button and checkbox elements
+        var deleteSelectedButton = document.getElementById("deleteSelectedButton");
+        var checkboxes = document.querySelectorAll(".checkbox");
+    
+        // Function to handle checkbox change event
+        function handleCheckboxChange() {
+          // Check if any checkbox is checked
+          var anyCheckboxChecked = Array.from(checkboxes).some(function(checkbox) {
+            return checkbox.checked;
+          });
+    
+          // Enable or disable the delete selected button based on the checkbox state
+          deleteSelectedButton.disabled = !anyCheckboxChecked;
+        }
+    
+        // Add event listener to each checkbox
+        checkboxes.forEach(function(checkbox) {
+          checkbox.addEventListener("change", handleCheckboxChange);
+        });
+    
+        // Pagination functionality
+        var prevBtn = document.getElementById("prevBtn");
+        var nextBtn = document.getElementById("nextBtn");
+        var rowsPerPageSelect = document.getElementById("rowsPerPage");
+        var pageInfo = document.getElementById("pageInfo");
+        var currentPage = 1;
+        var rowsPerPage = parseInt(rowsPerPageSelect.value, 10);
+        var totalPages = Math.ceil(persons.length / rowsPerPage);
+    
+        function updatePagination() {
+          prevBtn.disabled = currentPage === 1;
+          nextBtn.disabled = currentPage === totalPages;
+    
+          var startIndex = (currentPage - 1) * rowsPerPage;
+          var endIndex = startIndex + rowsPerPage;
+          var displayedPersons = persons.slice(startIndex, endIndex);
+    
+          populatePersonTable(displayedPersons);
+    
+          pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
+        }
+    
+        function goToPrevPage() {
+          if (currentPage > 1) {
+            currentPage--;
+            updatePagination();
+          }
+        }
+    
+        function goToNextPage() {
+          if (currentPage < totalPages) {
+            currentPage++;
+            updatePagination();
+          }
+        }
+    
+        function changeRowsPerPage() {
+          rowsPerPage = parseInt(rowsPerPageSelect.value, 10);
+          totalPages = Math.ceil(persons.length / rowsPerPage);
+          currentPage = 1;
+          updatePagination();
+        }
+    
+        prevBtn.addEventListener("click", goToPrevPage);
+        nextBtn.addEventListener("click", goToNextPage);
+        rowsPerPageSelect.addEventListener("change", changeRowsPerPage);
+      });
+      deleteSelectedButton.addEventListener('click', function() {
+        if (selectedUsers.size > 0) {
+          // Convert the selectedUsers set to an array to send to the server
+          var selectedUserIds = Array.from(selectedUsers);
+      
+          // Create a hidden form to submit the selected user IDs to the Django view
+          var form = document.createElement('form');
+          form.method = 'POST';
+          form.action = '/delete_selected_users/'; // Replace with the actual URL for the view
+      
+          // Add a CSRF token input to the form
+          var csrfTokenInput = document.createElement('input');
+          csrfTokenInput.type = 'hidden';
+          csrfTokenInput.name = 'csrfmiddlewaretoken';
+          csrfTokenInput.value = '{{ csrf_token }}'; // Get the CSRF token from the Django template
+          form.appendChild(csrfTokenInput);
+      
+          // Add the selected user IDs to the form as hidden inputs
+          selectedUserIds.forEach(function(userId) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = 'selected_users[]';
+            input.value = userId;
+            form.appendChild(input);
+          });
+      
+          // Append the form to the document and submit it
+          document.body.appendChild(form);
+          form.submit();
+        }
+      });
+
+      function redirectToNewTab(url) {
+        window.open(url, '_blank');
+      }
+    
+    
+        function getMeetUrl() {
+          fetch('/api/v1/getMeetSession', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': getCookie('csrftoken'), // Get the CSRF token from the cookie
+            },
+          })
+          .then(response => response.json())
+          .then(data => {
+            // Handle the response data
+            const url = data.response.meet_url;
+            // return meet_url;
+            redirectToNewTab(url);
+          })
+          .catch(error => {
+            // Handle errors
+            console.error('Request failed:');
+          });
+        }
+
+    </script>
+    
+    
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

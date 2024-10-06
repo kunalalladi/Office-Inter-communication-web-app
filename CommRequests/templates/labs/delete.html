@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <style>
+        body{
+            align-items: center;
+            justify-content: center;
+        }
+        .content-box {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f6f6;
+        }
+
+        .lab-list {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+            overflow-y: scroll;
+            max-height: 300px;
+        }
+
+        .lab-list h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .lab-item {
+            margin-bottom: 10px;
+        }
+
+        .lab-item label {
+            display: flex;
+            align-items: center;
+        }
+
+        .lab-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .delete-all-button {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .lab-numbers {
+            font-size: 16px;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <form class="delete_lab" method="post">
+        {% csrf_token %}
+        <div class="content-box">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <h2 class="text-center">Lab Deletion</h2>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="lab-list">
+                            <div>
+                                {% for lab in labs %}
+                                    <div class="lab-item">
+                                        <label>
+                                            <input type="checkbox" name="selected_labs" value="{{ lab.id }}">
+                                            {{ lab.name }}
+                                        </label>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="delete-all-button">
+                            <button class="btn btn-dark text-center">Delete Lab</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="lab-numbers"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-pzjw8y/u48Q/l10j5OD5y3+yzdwvKD8BTOZ8hR5m0d6D4+7Vp4+UgFaWA9NTJi4L"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

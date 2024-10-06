@@ -1,0 +1,51 @@
+body {
+    background: rgb(226, 226, 226);
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    height: 100px; 
+    background-color: #13274F;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 20px;
+    color: #f2ebeb;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+  }
+  
+  .card:hover {
+    background-color: #a9a6b0;
+  }
+  
+  .remove-button {
+    position: absolute;
+    bottom: 80px;
+    right: 20px;
+    border-radius: 20px;
+    background-color: rgb(14, 14, 14);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .add-button {
+    position: absolute;
+    bottom: 80px;
+    right: 150px;
+    border-radius: 20px;
+    background-color: rgb(14, 14, 14);
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  

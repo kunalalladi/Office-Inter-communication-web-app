@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </head>
+    <style>
+        .card1 {
+            background-color: #6fb3b8;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: left;
+            padding-top: 5%;
+            cursor: pointer;
+        }
+        .head {
+            font-size: 25px;
+            color: #6fb3b8;
+            padding: 30px;
+        }
+        .para {
+            color: #f2f2f2;
+            font-size: 18px;
+        }
+        .img1 {
+          height: 30px;
+          width: 30px;
+          cursor: pointer;
+        }
+        .bg-container {
+            background-color: #f6f6f2;
+            height: 100vh;
+            background-size: cover;
+        }
+    </style>
+    <body>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #388087;">
+                <a class="navbar-brand" href="#" style="color: #badfe7;">Organization</a>
+                <div class="d-lg-none ml-auto">
+                  <img src="https://res.cloudinary.com/dhva31opb/image/upload/v1688822000/bell2_vrutch.png" class="img1" />
+                </div>
+                <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="color: #badfe7;">
+                  <span class="navbar-toggler-icon" style="color: #badfe7;"></span>
+                </a>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                  <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="{% url 'main:chiefofficer_home' %}"style="color: #badfe7;">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'main:profilecard' %}"style="color: #badfe7;">Profile Search</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'CommRequests:cisolabs' %}"style="color: #badfe7;">Labs</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #badfe7;">
+                        Requests
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'CommRequests:request_outbox' %}">Request Outbox</a>
+                        <a class="dropdown-item" href="{% url 'CommRequests:request_inbox' %}">Request Inbox</a>
+                        <a class="dropdown-item" href="{% url 'CommRequests:request_pool' %}">common Pool</a>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'CommRequests:request_stats' %}"style="color: #badfe7;">Status</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #badfe7;">
+                        Account
+                      </a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="{% url 'main:profile' %}">Profile</a>
+                        <a class="dropdown-item" href="#">Settings</a>
+                        <a class="dropdown-item" href="{% url 'main:logout' %}">Log Out</a>
+                      </div>
+                    </li>
+                    <li class="nav-item active d-none d-lg-block">
+                      <img src="https://res.cloudinary.com/dhva31opb/image/upload/v1688822000/bell2_vrutch.png" class="img1" />
+                    </li>
+                  </ul>
+                </div>
+        </nav>
+          <div class="bg-container">
+            <h1 class="head">Welcome, {{user.first_name}}</h1>
+            <div class="container-fluid">
+              <div class="row justify-content-center pt-5">
+                  <div class="col-9 col-sm-5 col-lg-5 card1 shadow" onclick="renderToLabs()" >
+                      <p class="para" onclick="">Labs</p>
+                  </div>
+                  <div class="col-9 col-sm-5 col-lg-5 card1 shadow" onclick="renderToRequests()">
+                      <p class="para">Requests</p>
+                  </div>
+                  <div class="col-9 col-sm-5 col-lg-5 card1 shadow" onclick="renderToProfile()">
+                      <p class="para">Profile</p>
+                  </div>
+                  <div class="col-9 col-sm-5 col-lg-5 card1 shadow" onclick="renderToStatus()">
+                      <p class="para">Status</p>
+                  </div>
+                  <div class="col-12 text-center">
+                    {% if user.is_chiefofficer %}
+                    <button class="btn btn-primary" href="{% url 'assign_request' request_instance.id %}">Assign</button>
+                    {% endif %}
+                  </div>
+              </div>     
+            </div>
+          </div>
+          <script>
+            var templateURL;
+              function renderToLabs(){
+                templateURL= "{% url 'CommRequests:cisolabs' %}";
+                window.location.href=templateURL;
+              }
+              function renderToRequests(){
+                templateURL= "{% url 'CommRequests:request_inbox'%}";
+                window.location.href=templateURL;
+
+              }
+              function renderToProfile(){
+                templateURL= "{% url 'main:profilecard' %}";
+                window.location.href=templateURL;
+              }
+              function renderToStatus(){
+                templateURL="{% url 'CommRequests:request_stats' %}";
+                window.location.href=templateURL;   
+              }
+          </script>
+    </body>
+</html>
+

@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="ciso.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-light bg-light">
+      <div class="container-fluid">
+        <h4>Lab details</h4>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#mynavbar"
+          aria-controls="mynavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+          <form class="d-flex">
+            <input
+              class="form-control me-2"
+              type="text"
+              placeholder="Search"
+              id="searchInput"
+            />
+            <button
+              class="btn btn-dark"
+              type="button"
+              onclick="searchEmployee()"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <div class="container-buttons">
+      <button
+        id="addButton"
+        onclick="window.location.href = 'removelab.html';"
+        class="remove-button"
+      >
+        Remove Lab
+      </button>
+      <button
+        id="RemoveButton"
+        onclick="window.location.href = 'addlab.html';"
+        class="add-button"
+      >
+        Add Lab
+      </button>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <a href="emplab1.html" class="box col-lg-3">lab 1</a>
+        <a href="lab2.html" class="box col-lg-3 col-xl-3">lab 2</a>
+        <a href="lab3.html" class="box col-lg-3 col-xl-3">lab 3</a>
+        <a href="lab4.html" class="box col-lg-3 col-xl-3">lab 4</a>
+        <a href="lab5.html" class="box col-lg-3 col-xl-3">lab 5</a>
+        <a href="lab6.html" class="box col-3">lab 6</a>
+        <a href="lab7.html" class="box col-3">lab 7</a>
+        <a href="lab8.html" class="box col-3">lab 8</a>
+        <a href="lab9.html" class="box col-3">lab 9</a>
+      </div>
+    </div>
+  </body>
+</html>

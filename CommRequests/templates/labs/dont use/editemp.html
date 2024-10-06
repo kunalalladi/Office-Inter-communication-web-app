@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Project</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background: hsl(0, 12%, 95%);
+      border: 1px solid #f5f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center">Edit Employee</h2>
+    <form id="employeeForm">
+      <div class="form-group">
+        <label for="empName">Name:</label>
+        <input type="text" class="form-control" id="empName" required>
+      </div>
+      <div class="form-group">
+        <label for="empid">ID:</label>
+        <input type="number" class="form-control" id="empid" required>
+      </div>
+
+
+      <div class="form-group">
+        <label for="domain">Domain:</label>
+        <select  class="form-control" id="domain" required>
+          <option value="1">Domain 1</option>
+          <option value="2">Domain 2</option>
+          <option value="3">Domain 3</option>
+          <option value="4">Domain 4</option>
+          <option value="5">Domain 5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="members">Designation</label>
+        <input type="text" class="form-control" id="designation" required>  
+      </div>
+      <div>
+        <label for="details">Details</label>
+        <textarea class="form-control" id="details" required></textarea>
+
+      </div>
+
+
+
+
+      <br>
+      <button type="submit" class="btn btn-dark">Edit employee</button>
+    </form>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    // JavaScript code
+    document.getElementById("projectForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Get the values from the form
+      var projectName = document.getElementById("projectName").value;
+      var domain = document.getElementById("domain").value;
+      var description = document.getElementById("description").value;
+      var startDate = document.getElementById("startDate").value;
+      var endDate = document.getElementById("endDate").value;
+
+      // Do something with the project data (e.g., send to server or display on the page)
+      console.log("Name: " + projectName);
+      console.log("Domain: " + domain);
+      console.log("Description: " + description);
+      console.log("Start Date: " + startDate);
+      console.log("End Date: " + endDate);
+
+      // Clear the form
+      document.getElementById("projectForm").reset();
+    });
+  </script>
+</body>
+</html>

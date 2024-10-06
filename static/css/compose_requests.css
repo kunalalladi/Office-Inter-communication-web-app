@@ -1,0 +1,132 @@
+body{
+    display: flexbox;
+}
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 20%;
+    background-color: #f1f1f1;
+  }
+  
+  .sidebar a {
+    color: #333;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    background-color: #ddd;
+  }
+  
+  .sidebar ul {
+    padding-left: 20px;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar .btn-toggle {
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .sidebar .collapse {
+    display: none;
+    margin-left: 20px;
+  }
+  
+  .sidebar .collapse.show {
+    display: block;
+  }
+  
+  .sidebar .btn-toggle-nav {
+    padding-left: 20px;
+  }
+
+  .box {
+    margin-left: 300px;
+    margin-right: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    width: 850px;
+    height:600px;
+
+  }
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border-radius: 5px;
+  }
+  
+  form div {
+    margin-bottom: 10px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+  .radio-group {
+    display: flex;
+    padding: 5px;
+    align-items: center;
+  }
+
+  label[for^="urgency-"] {
+    margin-right: 10px;
+  }
+
+  button[type="submit"] {
+    background-color: #548CA8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #476072;
+  }
+  #recipient {
+    margin-bottom: 10px;
+  }
+  
+  #office-dropdown {
+    margin-top: 10px;
+  }
+  
+  #office {
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+  }

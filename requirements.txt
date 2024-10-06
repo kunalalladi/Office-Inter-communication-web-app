@@ -1,0 +1,12 @@
+django
+django-crispy-forms
+crispy-bootstrap5
+six
+django-autocomplete-light
+Pillow
+djangorestframework
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
+channels
+cryptography

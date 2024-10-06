@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %} {% block title %} Sign Up {% endblock %} 
+{% load crispy_forms_tags %} {% block content %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-info">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+<form method="POST">
+  {% csrf_token %}{{form|crispy}}
+  <p>Have an account? Login <a href="{% url 'main:login' %}">here</a></p>
+  <button type="submit" class="btn btn-success">Send for verification</button>
+</form>
+{% endblock %}

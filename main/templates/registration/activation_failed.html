@@ -1,0 +1,28 @@
+{% extends "main/base.html"%}
+
+    {% block content %}
+
+    {% if messages %}
+{% for message in messages %}
+<div class="alert alert-info">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+    
+    <div class="global-container">
+        <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">Activation Failed!</h3>
+            <div class="card-text text-center">
+                Please Sign Up again!
+            </div>
+            <div class="text-center">
+            <a class="btn btn-primary" href="{% url 'main:signup' %}" >SignUp</a>
+</div>
+        </div>
+    </div>
+    </div>
+
+
+    {% endblock %}

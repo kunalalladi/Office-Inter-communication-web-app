@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Status</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta name="robots" content="none,noarchive"/>
+    <!-- <link rel="stylesheet" type="text/css" href="/Users/prakash/Desktop/rci/compose_req (1).css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <style>
+        .popup-close {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        size: 10px;
+        cursor: pointer;
+      }
+
+      .body {
+        background-color: #F6F6F2;
+      }
+
+      .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        right: 20px;
+        transform: translateY(-50%);
+        width: 350px;
+        height: 100%;
+        padding: 20px;
+        background-color: #f6f6f2;
+        border-radius: 5px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+        z-index: 9999;
+      }
+
+      .popup-content {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .popup-content label {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      .popup-content .display-field {
+        margin-bottom: 5px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 4px;
+        height: 100%;
+        overflow: auto;
+      }
+
+      .popup-content .button-container {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .popup-content .button-container button {
+        background-color: #388087;
+        color: #ffffff;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-right: 10px; /* Added */
+      }
+
+      .popup-content .button-container button:last-child {
+        margin-right: 0; /* Added */
+      }
+
+      .popup-content .button-container button:hover {
+        background-color: #0056b3;
+      }
+      tbody tr:hover {
+        background-color: #f2f2f2;
+        cursor: pointer;
+      }
+
+      .container-custom {
+        /* max-width: 800px; */
+        width: 100%;
+        margin: 0 auto;
+        padding: 10px;
+      }
+
+      .navbar {
+        margin-top: 10px;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .nav-button {
+        padding: 8px 16px;
+        background-color: #badfe7;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 2%;
+      }
+
+      .nav-button:not(:last-child) {
+        margin-right: 5px;
+      }
+
+      .nav-button.active {
+        background-color: #badfe7;
+      }
+
+      #searchInput {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 5px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      #pagination {
+        margin-top: 10px;
+        text-align: center;
+      }
+
+      #prevBtn,
+      #nextBtn {
+        padding: 8px 16px;
+        background-color: #badfe7;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      #pageInfo {
+        margin: 0 10px;
+      }
+
+
+      .h1 {
+        /* margin-right: 50px; */
+        font-size: 30px;
+      }
+        .right {
+            float: right;
+            padding-right: 5%;
+        }
+        .card1 {
+            background-color: #388087;
+            margin: 20px;
+            border-radius: 10px;
+            text-align: left;
+            padding-top: 5%;
+            cursor: pointer;
+        }
+        .head {
+            font-size: 25px;
+            color: #badfe7;
+            padding: 30px;
+        }
+        .para {
+            color: #f2f2f2;
+            font-size: 18px;
+        }
+        .img1 {
+          height: 30px;
+          width: 30px;
+          cursor: pointer;
+        }
+        .bg-container {
+            background-color: #f6f6f2;
+            height: 100vh;
+            background-size: cover;
+        }
+
+        #card {
+            background-color: #f6f6f2;
+            align-items: center;
+            border-radius: 10px;
+            margin: 20px;
+            width: 45%;
+            padding: 10px;
+        }
+
+        #card1 {
+            background-color: #f6f6f2;
+            align-items: center;
+            border-radius: 10px;
+            margin: 10px;
+            padding: 1%;
+        }
+        h5 {
+            padding: 5px;
+        }
+    </style>
+    <div class="container-fluid">
+        <div class="row">
+          <nav class="navbar sticky-top navbar-expand-lg navbar-dark" style="background-color: #388087;">
+            <a class="navbar-brand" href="#" style="color: #badfe7;">Organization</a>
+            <div class="d-lg-none ml-auto">
+              <img src="https://res.cloudinary.com/dhva31opb/image/upload/v1688822000/bell2_vrutch.png" class="img1" />
+            </div>
+            <a class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="color: #badfe7;">
+              <span class="navbar-toggler-icon" style="color: #badfe7;"></span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="Employee.html"style="color: #badfe7;">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="profile_card_fin.html"style="color: #badfe7;">Profile Search</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="emp_lab_fin.html"style="color: #badfe7;">Lab Search</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #badfe7;">
+                    Requests
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="employee_req_fin.html">Personal</a>
+                    <a class="dropdown-item" href="common_pool_req_fin.html">Common Pool</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="status.html"style="color: #badfe7;">Status</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #badfe7;">
+                    Account
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="profile.html">Profile</a>
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Log Out</a>
+                  </div>
+                </li>
+                <li class="nav-item active d-none d-lg-block">
+                  <img src="https://res.cloudinary.com/dhva31opb/image/upload/v1688822000/bell2_vrutch.png" class="img1" />
+                </li>
+              </ul>
+            </div>
+    </nav>
+            <div id="card" class="col-11 col-sm-8 col-md-5 col-lg-5 shadow text-center">
+                <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <hr />
+                <h1 class="navbar-brand mb-0 h1">Status</h1>
+                <hr />
+                <div class="navbar">
+                  <button class="nav-button" data-status="received">All</button>
+                  <button class="nav-button" data-status="received">Request sent</button>
+                  <button class="nav-button" data-status="in progress">
+                    In Progress
+                  </button>
+                  <button class="nav-button" data-status="pending">Rejected</button>
+                  <button class="nav-button" data-status="pending">Pending</button>
+                </div>
+                <div class="container-custom">
+                  <input type="text" id="searchInput" placeholder="Search..." />
+                  <div class="rows-per-page">
+                    <label for="rowsPerPage">Rows per page:</label>
+                    <select id="rowsPerPage">
+                      <option value="10">10</option>
+                      <option value="25">25</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                  </div>
+                  <table id="dataTable">
+                    <thead>
+                      <tr>
+                        <th>Project</th>
+                        <th>Domain</th>
+                        <th>Status</th>
+                        <th>Upload Date</th>
+                        <!--<th>Project Type</th>-->
+                        <th>Urgency</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                      <!-- Table rows will be dynamically populated here -->
+                    </tbody>
+                  </table>
+                  <div id="pagination">
+                    <button id="prevBtn" disabled>&lt; Prev</button>
+                    <span id="pageInfo">Page 1 of 1</span>
+                    <button id="nextBtn" disabled>Next &gt;</button>
+                  </div>
+                </div>
+                <!--<script src="request.js"></script>-->
+              </nav>
+              <div id="popup" class="popup">
+                <div class="popup-content">
+                  <label>Project Name:</label>
+                  <span class="popup-close" style="padding: 10px; padding-left: 90%"
+                    >&times;</span
+                  >
+                  <div class="display-field" id="projectName"></div>
+                  <label>Sent by:</label>
+                  <div class="display-field" id="receivedDate"></div>
+                  <label>Sent to:</label>
+                  <div class="display-field" id="receivedDate"></div>
+                  <label>Domain:</label>
+                  <div class="display-field" id="domain"></div>
+        
+                  <label>Urgency:</label>
+                  <div class="display-field" id="urgency"></div>
+        
+                  <label>Received Date:</label>
+                  <div class="display-field" id="receivedDate"></div>
+        
+                  <label>Deadline:</label>
+                  <div class="display-field" id="deadline"></div>
+        
+                  <label>Project Description:</label>
+                  <div class="display-field" id="projectDescription"></div>
+                </div>
+              </div>
+            </div>            
+            <script>
+                var xValues = ["Requests Sent", "Pending","Accepted","completed"];
+                var yValues = [{{sent_count}}, {{pending_count}}, {{accepted_count}},{{completed_count}}];
+                var barColors = ["blue", "green", "red","yellow"];
+                new Chart("myChart", {
+                    type: "doughnut",
+                    data: {
+                        labels: xValues,
+                        datasets: [{
+                            backgroundColor: barColors,
+                            data: yValues
+                        }]
+                    },
+                    options: {
+                        title: {
+                            display: false,
+                            text: "Status",
+                            fontSize: 25,
+                        },
+                        align: "center",
+                        responsive: false,
+                        layout: {
+                            margin: {
+                                left: 70,
+                                top: 30,
+                                right: 30,
+                                bottom: 60
+                            },
+                            padding: {
+                                top: 30,
+                                bottom: 30
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: "right",
+                        },
+                        animation: {
+                            duration: 3000,
+                        },
+                    },
+                });
+            </script>            
+        </div>
+    </div>
+    <!-- <script src="boot.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var hardSection = document.querySelector(".hard");
+            var mediumSection = document.querySelector(".medium");
+            var lowSection = document.querySelector(".low");
+            function showTooltip(section, message) {
+                section.setAttribute("title", message);
+            }
+            function hideTooltip(section) {
+                section.removeAttribute("title");
+            }
+            hardSection.addEventListener("mouseover", function () {
+                showTooltip(hardSection, "When you complete a hard request, you will be awarded 20 points");
+            }); 
+            mediumSection.addEventListener("mouseover", function () {
+                showTooltip(mediumSection, "When you complete a medium request, you will be awarded 15 points");
+            });
+            lowSection.addEventListener("mouseover", function () {
+                showTooltip(lowSection, "When you complete an low request, you will be awarded 10 points");
+            });
+        });
+    </script>
+    <script>
+      var jsonData = JSON.parse('{{ requests|safe }}');
+      var tableBody = document.getElementById('tableBody');
+      var searchInput = document.getElementById('searchInput');
+      var statusButtons = document.querySelectorAll('.nav-button');
+
+      var selectedStatus = 'all'; // Default selected status
+
+      // Function to filter and display table rows based on search query and selected status
+      function filterAndDisplayRows() {
+          var query = searchInput.value.toLowerCase();
+          var filteredData = jsonData.filter(function (data) {
+              var isStatusMatch = selectedStatus === 'all' || data.fields.status.toLowerCase() === selectedStatus;
+
+              return (
+                  isStatusMatch &&
+                  (data.fields.project_name.toLowerCase().includes(query) ||
+                      data.fields.domain_of_project.toLowerCase().includes(query) ||
+                      data.fields.status.toLowerCase().includes(query) ||
+                      data.fields.created_at.toLowerCase().includes(query) ||
+                      data.fields.urgency.toLowerCase().includes(query))
+              );
+          });
+
+          totalRows = filteredData.length; // Update totalRows based on filtered data
+          totalPages = Math.ceil(totalRows / rowsPerPage); // Update totalPages
+
+          tableBody.innerHTML = ''; // Clear existing table rows
+
+          if (totalRows === 0) {
+              // Create a table row to display a message for no matching data
+              var emptyRow = document.createElement('tr');
+              var emptyCell = document.createElement('td');
+              emptyCell.setAttribute('colspan', '5');
+              emptyCell.textContent = 'No matching data found';
+              emptyRow.appendChild(emptyCell);
+              tableBody.appendChild(emptyRow);
+          } else {
+              filteredData.forEach(function (data) {
+                  // Create a new table row
+                  var newRow = document.createElement('tr');
+                  // Create table data cells and populate them with the filtered data
+                  var projectCell = document.createElement('td');
+                  projectCell.textContent = data.fields.project_name;
+                  newRow.appendChild(projectCell);
+                  var domainCell = document.createElement('td');
+                  domainCell.textContent = data.fields.domain_of_project;
+                  newRow.appendChild(domainCell);
+                  var statusCell = document.createElement('td');
+                  statusCell.textContent = data.fields.status;
+                  newRow.appendChild(statusCell);
+                  var uploadDateCell = document.createElement('td');
+                  var originalDate = data.fields.created_at;
+                  var formattedDate = originalDate.split('T')[0];
+                  uploadDateCell.textContent = formattedDate;
+                  newRow.appendChild(uploadDateCell);
+                  var urgencyCell = document.createElement('td');
+                  urgencyCell.textContent = data.fields.urgency;
+                  newRow.appendChild(urgencyCell);
+                  // Append the new row to the table body
+                  tableBody.appendChild(newRow);
+              });
+          }
+
+          updatePagination(); // Update pagination after filtering and displaying rows
+      }
+
+
+      // Event listener for search input changes
+      searchInput.addEventListener('input', filterAndDisplayRows);
+
+      // Event listeners for status buttons
+      statusButtons.forEach(function (button) {
+          button.addEventListener('click', function () {
+              var status = this.getAttribute('data-status');
+              if (status !== selectedStatus) {
+                  selectedStatus = status;
+                  currentPage = 1;
+                  filterAndDisplayRows();
+                  updatePagination();
+              }
+          });
+      });
+
+      // Pagination
+      var currentPage = 1;
+      var rowsPerPage = 10;
+      var totalRows = jsonData.length;
+      var totalPages = Math.ceil(totalRows / rowsPerPage);
+
+      var prevBtn = document.getElementById('prevBtn');
+      var nextBtn = document.getElementById('nextBtn');
+      var pageInfo = document.getElementById('pageInfo');
+      var rowsPerPageSelect = document.getElementById('rowsPerPage');
+
+      function updatePagination() {
+          pageInfo.textContent = 'Page ' + currentPage + ' of ' + totalPages;
+
+          if (currentPage === 1) {
+              prevBtn.disabled = true;
+          } else {
+              prevBtn.disabled = false;
+          }
+
+          if (currentPage === totalPages) {
+              nextBtn.disabled = true;
+          } else {
+              nextBtn.disabled = false;
+          }
+      }
+
+      function showRows(startIndex, endIndex) {
+          tableBody.innerHTML = ''; // Clear existing table rows
+
+          for (var i = startIndex; i < endIndex && i < totalRows; i++) {
+              var data = jsonData[i];
+              // Create table rows and populate them with data
+              var newRow = document.createElement('tr');
+              var projectCell = document.createElement('td');
+              projectCell.textContent = data.fields.project_name;
+              newRow.appendChild(projectCell);
+              var domainCell = document.createElement('td');
+              domainCell.textContent = data.fields.domain_of_project;
+              newRow.appendChild(domainCell);
+              var statusCell = document.createElement('td');
+              statusCell.textContent = data.fields.status;
+              newRow.appendChild(statusCell);
+              var uploadDateCell = document.createElement('td');
+              var originalDate = data.fields.created_at;
+              var formattedDate = originalDate.split('T')[0];
+              uploadDateCell.textContent = formattedDate;
+              newRow.appendChild(uploadDateCell);
+              var urgencyCell = document.createElement('td');
+              urgencyCell.textContent = data.fields.urgency;
+              newRow.appendChild(urgencyCell);
+              // Append the new row to the table body
+              tableBody.appendChild(newRow);
+          }
+      }
+
+      rowsPerPageSelect.addEventListener('change', function () {
+          rowsPerPage = parseInt(this.value);
+          totalPages = Math.ceil(totalRows / rowsPerPage);
+          currentPage = 1;
+          updatePagination();
+          showRows(0, rowsPerPage);
+      });
+
+      prevBtn.addEventListener('click', function () {
+          if (currentPage > 1) {
+              currentPage--;
+              var startIndex = (currentPage - 1) * rowsPerPage;
+              var endIndex = startIndex + rowsPerPage;
+              showRows(startIndex, endIndex);
+              updatePagination();
+          }
+      });
+
+      nextBtn.addEventListener('click', function () {
+          if (currentPage < totalPages) {
+              currentPage++;
+              var startIndex = (currentPage - 1) * rowsPerPage;
+              var endIndex = startIndex + rowsPerPage;
+              showRows(startIndex, endIndex);
+              updatePagination();
+          }
+      });
+
+      // Initial display of table rows, pagination, and filtering
+      updatePagination();
+      filterAndDisplayRows();
+      showRows(0, rowsPerPage);
+
+
+
+  </script>
+</body>
+
+</html>

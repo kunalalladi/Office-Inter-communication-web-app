@@ -1,0 +1,45 @@
+{% extends "main/base.html"%}
+
+{% block title %} 2FA {% endblock %}
+
+    {% block content %}
+
+
+    <div class="global-container">
+        <div class="card login-form">
+        <div class="card-body">
+            <h3 class="card-title text-center">OTP verification</h3>
+            {% if messages %}
+
+            {% for message in messages %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+            {% endfor %}
+      
+        {% endif %}
+            <div class="card-text">
+                <!--
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">Incorrect username or password.</div> -->
+                <br>
+                <p>Please enter the otp which has been sent to your registered email address.</p>
+                <form method="post" class="otp-form" id="form" action="/otp">
+                    {% csrf_token %}
+                    <!-- to error: add class "has-danger" -->
+                    <div class="form-group">
+                        <label for="exampleInputOtp1">OTP</label>
+                        <input type="text" name="otp" class="form-control form-control-sm" id="exampleInputOtp1">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-success btn-block">Submit</button>
+                    <div class="resend_otp">
+                        Want another OTP? <a href="{% url 'main:resend_otp' %}" action="resen_otp">Resend OTP</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+
+    {% endblock %}

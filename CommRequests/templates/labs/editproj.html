@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Project</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background: hsl(0, 12%, 95%);
+      border: 1px solid #f5f2f2;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="text-center">Edit Project</h2>
+    <form id="projectForm" method="post">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="project_name">Project Name:</label>
+        <input type="text" name="project_name"class="form-control" id="project_name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="project_domain">Domain:</label>
+        <select  class="form-control" name="project_domain" id="project_domain" required>
+          <option value="CSec">Cyber Security</option>
+          <option value="CComp">Cloud Computing</option>
+          <option value="IT">Information Technology</option>
+          <option value="SysArch">System Architect</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="team_members">Team_members</label>
+        <select name="team_members" id="team_members" class="form-control" required multiple>
+            {% for  member in lab_members %}    
+                <option value="{{ member.id }}" id="member{{member.id}}" name="{{ member.username }}">{{ member.username }}</option>
+            {% endfor %}
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="project_status">Status:</label>
+        <select class="form-control" id="project_status" name='project_status' required>
+          <option value='open'>Open</option>
+          <option value='in_progress'>In Progress</option>
+          <option value='completed'>Completed</option>
+          <option value="onhold">OnHold</option>
+          <option value="closed">Closed</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea class="form-control" id="description" name='description' required></textarea>
+      </div>
+    
+    
+
+      <div class="form-group">
+        <label for="finished_at">End Date:</label>
+        <input type="date" class="form-control" name="finished_at" id="finished_at" required>
+      </div>
+
+      <br>
+      <button type="submit" class="btn btn-dark">Add Project</button>
+    </form>
+  </div>
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    // JavaScript code
+    //document.getElementById("projectForm").addEventListener("submit", function(event) {
+    //event.preventDefault(); // Prevent form submission
+
+      // Get the values from the form
+      //var projectName = document.getElementById("projectName").value;
+      //var domain = document.getElementById("domain").value;
+      //var description = document.getElementById("description").value;
+      //var startDate = document.getElementById("startDate").value;
+      //var endDate = document.getElementById("endDate").value; 
+
+      // Do something with the project data (e.g., send to server or display on the page)
+      //console.log("Project Name: " + projectName);
+      //console.log("Domain: " + domain);
+      //console.log("Description: " + description);
+      //console.log("Start Date: " + startDate);
+      //console.log("End Date: " + endDate);
+
+      // Clear the form
+      //document.getElementById("projectForm").reset();
+    //});
+  </script>
+</body>
+</html>

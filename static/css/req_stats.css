@@ -1,0 +1,134 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 280px;
+    background-color: #f1f1f1;
+  }
+  
+  .sidebar a {
+    color: #333;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sidebar a:hover {
+    background-color: #ddd;
+  }
+  
+  .sidebar ul {
+    padding-left: 20px;
+  }
+  
+  .sidebar li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar .btn-toggle {
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  .sidebar .collapse {
+    display: none;
+    margin-left: 20px;
+  }
+  
+  .sidebar .collapse.show {
+    display: block;
+  }
+  
+  .sidebar .btn-toggle-nav {
+    padding-left: 20px;
+  }
+  
+  .status-bar {
+    margin-left: 280px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    min-height: 100px;
+ /* Increased height */
+    width: 850px;
+    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .inner-bar {
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  #searchInput {
+    width: 100%;
+  }
+  
+  .table {
+    margin-top: 20px;
+    width: 50%;
+    font-size: 16px; /* Increased font size */
+  }
+  
+  .table th,
+  .table td {
+    padding: 20px; /* Increased padding */
+  }
+  
+  .table tbody tr {
+    height: 60px; /* Increased row height */
+  }
+  
+  .status-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .urgent {
+    background-color: red;
+  }
+  
+  .moderately-urgent {
+    background-color: orange;
+  }
+  
+  .not-urgent {
+    background-color: green;
+  }
+  #card {
+    background-color: whitesmoke;
+    align-items: center;
+    border-radius: 20px;
+    margin: 30px;
+}
+.span{
+    padding: 15px;
+    margin-left: 60px;
+}
+.span:hover{
+    cursor: pointer;
+    background-color: whitesmoke;
+    border-bottom: 3px solid grey;
+}
+#areq{
+    display: none;
+    width: 100%;
+}
+#ped {
+    display: none;    
+    width: 100%;
+}
+.stat {
+    color: black;
+}
+  

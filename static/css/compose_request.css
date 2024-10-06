@@ -1,0 +1,84 @@
+.card-text {
+    color: white;
+  }
+
+  .bg {
+    background-color: #13274F;
+    height: 100vh;
+    width: 100vh;
+}
+
+.img {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+}
+
+h1 {
+    color: black;
+    font-size: 30px;
+    padding-top: 20px;
+    font-family: "Bree Serif";
+}
+
+.p {
+    color: #ffffff;
+    font-size: 18px;
+    font-family: "Bree Serif";
+}
+
+.bg1 {
+    background-color: #E1EBEE;
+    height: 10vh;
+    width: 100vh;
+}
+
+.img1 {
+    height: 60px;
+    width: 40px;
+    padding-top: 20px;
+    margin-left: 5%;
+}
+
+.search {
+    margin-left: 40%;
+    padding-top: 20px;
+}
+
+.card {
+    background-color: #13274F;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.card1 {
+    background-color: #E1EBEE;
+    margin: 20px;
+    border-radius: 20px;
+}
+
+.head {
+    color: #ffffff;
+    font-size: 20px;
+    font-family: "Bree Serif";
+    padding: 20%;
+}
+
+.head1 {
+    color: black;
+    font-size: 20px;
+    font-family: "Bree Serif";
+    padding: 20%;
+}
+
+.bt {
+    font-family: "Bree Serif";
+    color: #ffffff;
+    font-size: 20px;
+    margin-right: 20vh;
+}
+
+.card-title{
+    color: white;
+}
+  

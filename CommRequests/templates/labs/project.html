@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <title>Lab Projects</title>
+  <style>
+    .custom-card {
+      background-color: #faf6f6;
+      border: 1px solid #fff8f8;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-sizing:fixed;
+      margin-bottom: 20px;
+    }
+
+    .custom-card .card-title {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .custom-card .card-text {
+      margin-bottom: 15px;
+    }
+
+    .custom-card .btn {
+      background-color: #000;
+      color: #fff;
+    }
+    .custom-card {
+      padding: 30px;
+    }
+    .container {
+      margin-top: 20px;
+    }
+    .add-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+  }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-sm navbar-light bg-light">
+    <div class="container-fluid">
+      <h4>{{lab.name}} Projects</h4>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar" aria-controls="mynavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-search"></i>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="mynavbar">
+        <form class="d-flex">
+          <input class="form-control me-2" type="text" placeholder="Search" id="searchInput">
+          <button class="btn btn-dark" type="button" onclick="searchProjects()">Search</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  {% for message in messages %}
+    {{message}}
+  {% endfor %}
+    <div class="container">
+        <div class="row">
+        {% for project in projects %}
+          <div class="col-md-6">
+            <div class="card custom-card">
+              <div class="card-body">
+                <h5 class="card-title">{{ project.project_name }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+                
+                  <button class="btn btn-dark view-button"  data-project-id="{{ project.project_id }}" data-project-name="{{project.project_name}}" data-project-domain="{{project.project_domain}}" data-project-members="{{ team_members }}" data-project-description="{{project.description}}" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">View Details</button>
+                {% if request.user in chief_user%}
+                  <a href="{% url 'CommRequests:editproj' lab.id project.project_id %}"><button class="btn btn-dark edit-button">Edit</button></a>    
+                {% endif %}     
+              </div>
+            </div>
+          </div>
+      {% empty %}
+          <p>No Projects Found!</p>
+        {% endfor %}
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="sidebarOffcanvasLabel">Details</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Project Information</h5>
+              <div id="project-details">
+                <p class="card-text"  ><strong>Name of project: </strong><span id="project-title"></span></p>
+                <p class="card-text" ><strong>Domain: </strong><span id="project-domain"></span></p>
+                <p class="card-text" ><strong>Team Members: </strong><pre id="project-members"></pre></p>
+                
+                
+                
+                <p class="card-text" ><strong>Discription: </strong><span id="project-description"></span></p>
+                <hr>
+                <p class="card-text">Some text describing the Project details.</p> 
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-top" tabindex="-1" id="editSidebarOffcanvas" aria-labelledby="editSidebarOffcanvasLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="editSidebarOffcanvasLabel">Edit Project</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body"> 
+        </div>
+      </div>
+  
+    </div>
+{% if request.user in chief_user%}
+  <a href="{% url 'CommRequests:addproj' lab.id %}"> 
+    <button  class="btn btn-dark add-button">Add Project</button>
+  </a>
+{%  endif %}
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    function searchProjects() {
+      var input, filter, cards, cardContainer, title, i;
+      input = document.getElementById("searchInput");
+      filter = input.value.toUpperCase();
+      cardContainer = document.getElementsByClassName("container")[0];
+      cards = cardContainer.getElementsByClassName("card");
+
+      for (i = 0; i < cards.length; i++) {
+        title = cards[i].querySelector(".card-title");
+        if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+          cards[i].style.display = "";
+        } else {
+          cards[i].style.display = "none";
+        }
+      }
+    }
+    function addExistingLab() {
+  const labNameInput = document.getElementById("labName");
+  const labsSelect = document.getElementById("labs");
+
+  // Get the selected lab(s)
+  const selectedLabs = Array.from(labsSelect.selectedOptions).map(option => option.value);
+
+  // Perform necessary actions with the selected lab(s)
+  console.log("Add Existing Lab:");
+  console.log("Lab Name:", labNameInput.value);
+  console.log("Selected Labs:", selectedLabs);
+
+  // Clear input fields and close the offcanvas
+  labNameInput.value = "";
+  labsSelect.selectedIndex = -1;
+  closeOffcanvas();
+}
+
+function createLab() {
+  const newLabNameInput = document.getElementById("newLabName");
+  const newLabFieldsInput = document.getElementById("newLabFields");
+
+  // Get the values entered for the new lab
+  const newLabName = newLabNameInput.value;
+  const newLabFields = newLabFieldsInput.value;
+
+  // Perform necessary actions to create the new lab
+  console.log("Create New Lab:");
+  console.log("Lab Name:", newLabName);
+  console.log("Lab Fields:", newLabFields);
+
+  // Clear input fields and close the offcanvas
+  newLabNameInput.value = "";
+  newLabFieldsInput.value = "";
+  closeOffcanvas();
+}
+
+function closeOffcanvas() {
+  const offcanvas = document.getElementById("editSidebarOffcanvas");
+  const bootstrapOffcanvas = bootstrap.Offcanvas.getInstance(offcanvas);
+  if (bootstrapOffcanvas) {
+    bootstrapOffcanvas.hide();
+  }
+}
+
+
+// Retrieve the sidebar and project details elements
+const sidebar = document.getElementById('sidebarOffcanvas');
+const projectTitleElement = document.getElementById('project-title');
+const projectDescriptionElement = document.getElementById('project-description');
+const projectDomainElement = document.getElementById('project-domain');
+var projectMembersElement = document.getElementById('project-members');
+
+
+
+
+// Attach a click event listener to the "View Details" buttons
+const viewDetailsButtons = document.getElementsByClassName('btn btn-dark view-button');
+Array.from(viewDetailsButtons).forEach(button => {
+  button.addEventListener('click', () => {
+    const projectMembersJSON ='{{ team_members|escapejs }}';
+    const projectMembers=JSON.parse(projectMembersJSON);
+    const projectId = button.getAttribute('data-project-id');
+    const projectTitle = button.getAttribute('data-project-name');
+    const projectDescription = button.getAttribute('data-project-description');
+    const projectDomain = button.getAttribute('data-project-domain');
+    const membersString= projectMembers.join('\n');
+    projectMembers.innerHTML +=  "<br>";
+
+
+    // Update the sidebar with the project details
+    projectTitleElement.textContent = projectTitle;
+    projectDescriptionElement.textContent = projectDescription;
+    projectDomainElement.textContent=projectDomain;
+    projectMembersElement.textContent=projectMembers;
+    
+
+    // Show the sidebar
+    sidebar.classList.add('show');
+  });
+});
+
+  </script>
+  
+</body>
+</html>

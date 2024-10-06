@@ -1,0 +1,106 @@
+body {
+  background: rgb(226, 226, 226);
+}
+.bg {
+  background-color: #0e0f10;
+  height: 100vh;
+  width: 100vh;
+  color: #ffffff;
+}
+
+.img {
+  height: 60px;
+  width: 60px;
+  border-radius: 30px;
+}
+.main {
+  padding: 10px;
+}
+.user {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.users .card{
+  flex-basis: calc(50% - 20px);
+  text-align: center;
+  margin: 10px;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+}
+.number {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.employee-list {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+  background: #fcfbfb;
+  border-radius: 10px;
+  box-shadow: 0 20px 35px rgba(67, 66, 66, 0.1);
+}
+.table {
+  margin: 25px 0;
+  font-size: 20px;
+  min-width: 100%;
+  overflow: hidden;
+  border-radius: 5px 5px 0 0;
+}.blink-container {
+  animation: blink-animation 1s steps(5, start) infinite;
+  -webkit-animation: blink-animation 1s steps(5, start) infinite;
+  border: 2px solid black;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+.table th,
+.table td {
+  padding: 12px 15px;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.table tbody tr:nth-of-type(odd) {
+  background: #f3f3f3;
+}
+.card body{
+    padding: 20px;
+}
+.table th {
+  background-color: black;
+  color: white;
+}
+.table-container {
+  height:400px;
+  width:100%;
+  overflow-x: auto;
+  overflow-y: auto;
+
+}
+.sort-button {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.edit-button {
+  padding: 10px;
+  margin-left: 10px;
+}
+
+
+

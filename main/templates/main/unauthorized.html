@@ -1,0 +1,37 @@
+{% extends "main/base.html"%}
+
+{% block title %} success {% endblock %}
+
+    {% block content %}
+
+    
+    
+    <div class="global-container">
+        <div class="card login-form">
+        <div class="card-body">
+            {% if messages %}
+{% for message in messages %}
+<div class="alert alert-info">
+{{ message }}
+</div>
+{% endfor %}
+{% endif %}
+            <h3 class="card-title text-center">You are not allowed to access this page!</h3>
+            <div class="card-text text-center">
+                Go back to your assigned Home Page
+            </div>
+            <div class="text-center">
+                {% if user.is_employee %}
+                    <a class="btn btn-success" href="{% url 'main:employee_home' %}" >Employee Home</a>
+                {% elif user.is_officer %}
+                    <a class="btn btn-success" href="{% url 'main:officer_home' %}" >Officer Home</a>
+                {% elif user.is_chiefofficer %}
+                    <a class="btn btn-success" href="{% url 'main:chiefofficer_home' %}" >Chief Officer Home</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    {% endblock %}

@@ -1,0 +1,31 @@
+.bg {
+    background-color: #13274F;
+    height: 100vh;
+    width: 100vh;
+    color: #ffffff;
+}
+
+.img {
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+}
+
+.bg1 {
+    background-color: #E1EBEE;
+    height: 10vh;
+    width: 100vh;
+    margin-top: 90px;
+}
+
+#cnt1 {
+    margin-top: 100px;
+    align-items: center;
+}
+
+.head1 {
+    color: black;
+    font-size: 20px;
+    font-family: "Bree Serif";
+    padding: 20%;
+}

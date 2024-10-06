@@ -1,0 +1,111 @@
+[
+    {
+      "username": "sankeerth123",
+      "email": "sankeerth123@example.com",
+      "password": "Password123",
+      "designation": "employee",
+      "is_otp_req": 0,
+      "date_of_joining": "2022-05-15",
+      "is_employee": 1
+    },
+    {
+      "username": "prakash789",
+      "email": "prakash789@example.com",
+      "password": "Test1234",
+      "designation": "officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2021-10-28",
+      "is_employee": 1
+    },
+    {
+      "username": "narasimha456",
+      "email": "narasimha456@example.com",
+      "password": "Pass1234",
+      "designation": "chief officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2020-09-07",
+      "is_employee": 1
+    },
+    {
+      "username": "shivamanish012",
+      "email": "shivamanish012@example.com",
+      "password": "12345Test",
+      "designation": "employee",
+      "is_otp_req": 0,
+      "date_of_joining": "2023-01-12",
+      "is_employee": 1
+    },
+    {
+      "username": "ameersohail678",
+      "email": "ameersohail678@example.com",
+      "password": "Password123",
+      "designation": "officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2022-03-25",
+      "is_employee": 1
+    },
+    {
+      "username": "abhishek345",
+      "email": "abhishek345@example.com",
+      "password": "Test1234",
+      "designation": "chief officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2021-06-30",
+      "is_employee": 1
+    },
+    {
+      "username": "bhupathi234",
+      "email": "bhupathi234@example.com",
+      "password": "Pass1234",
+      "designation": "employee",
+      "is_otp_req": 0,
+      "date_of_joining": "2020-12-05",
+      "is_employee": 1
+    },
+    {
+      "username": "rithvika567",
+      "email": "rithvika567@example.com",
+      "password": "12345Test",
+      "designation": "officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2022-07-18",
+      "is_employee": 1
+    },
+    {
+      "username": "kunal901",
+      "email": "kunal901@example.com",
+      "password": "Password123",
+      "designation": "chief officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2021-09-02",
+      "is_employee": 1
+    },
+    {
+      "username": "shravan890",
+      "email": "shravan890@example.com",
+      "password": "Test1234",
+      "designation": "employee",
+      "is_otp_req": 0,
+      "date_of_joining": "2020-11-14",
+      "is_employee": 1
+    },
+    {
+      "username": "vaneesha456",
+      "email": "vaneesha456@example.com",
+      "password": "Pass1234",
+      "designation": "officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2023-02-28",
+      "is_employee": 1
+    },
+    {
+      "username": "yashwanth123",
+      "email": "yashwanth123@example.com",
+      "password": "12345Test",
+      "designation": "chief officer",
+      "is_otp_req": 0,
+      "date_of_joining": "2022-08-10",
+      "is_employee": 1
+    }
+  ]
+  

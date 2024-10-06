@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>emplab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/emplab.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/emplab.js"></script>
+    <style>
+        .navbar {
+        position: fixed;
+        top: 0;
+        right: 0; /* Set the navbar to the right side */
+        width: calc(100% - 280px); /* Subtract the width of the sidebar from 100% */
+        z-index: 999;
+        }
+        .container-fluid {
+         padding-top: 60px; /* Adjust the padding-top value to create space below the fixed navbar */
+        }
+        .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 280px;
+        background-color: #f1f1f1;
+        z-index: 998;
+        overflow-y: auto;
+        padding-top: 60px; /* Adjust the padding-top value to match the height of the navbar */
+        }
+        ::-webkit-scrollbar {
+        width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+        background-color: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+        background-color: #888;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+        background-color: #555;
+        }
+        .container-custom {
+            /* max-width: 800px; */
+            width: 100%;
+            margin: 0 auto;
+            padding: 10px;
+        }
+
+        .nav-button {
+            padding: 8px 16px;
+            background-color: #f2f2f2;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-button:not(:last-child) {
+            margin-right: 5px;
+        }
+
+        .nav-button.active {
+            background-color: #ddd;
+        }
+
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #pagination {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #prevBtn,
+        #nextBtn {
+            padding: 5px 10px;
+        }
+
+        #pageInfo {
+            margin: 0 10px;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 280px;
+            background-color: #f1f1f1;
+        }
+
+        .sidebar a {
+            color: #333;
+            display: block;
+            padding: 10px 10px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            background-color: #ddd;
+        }
+
+        .sidebar ul {
+            padding-left: 20px;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar .btn-toggle {
+            width: 100%;
+            text-align: left;
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .sidebar .collapse {
+            display: none;
+            margin-left: 10px;
+        }
+
+        .sidebar .collapse.show {
+            display: block;
+        }
+
+        .sidebar .btn-toggle-nav {
+            padding-left: 20px;
+        }
+
+        .col-two {
+            max-height: max-content;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+
+        .h1 {
+            /* margin-right: 50px; */
+            font-size: 30px;
+        }
+
+        .tb1 {
+            padding-top: 20px;
+        }
+        #card {
+            background-color: whitesmoke;
+            align-items: center;
+            border-radius: 20px;
+            margin: 30px;
+            width: 100%;
+            height: 40%;
+        }
+        .navbar {
+          height: 70px; /* Adjust the height value as desired */
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 0 10px;
+          background-color: #f8f9fa;
+      }
+
+
+    </style>
+</head>
+<body>
+    <div id="section" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-4 col-md-3 col-one">
+                <div class="sidebar">
+                    <div class="flex-shrink-0 p-3" style="width: 280px;">
+                        <a href="/"
+                            class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+                            <svg class="bi pe-none me-2" width="30" height="24">
+                                <use xlink:href="#bootstrap"></use>
+                            </svg>
+                            <span class="fs-5 fw-semibold">Name</span>
+                        </a>
+                        <ul class="list-unstyled ps-0">
+                            <li class="mb-1">
+                                <button class="btn btn-toggle align-items-center rounded collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" href="employee.html">
+                                    Home
+                                </button>
+                                <div class="collapse " id="home-collapse" >
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="emplab.html" class="link-dark rounded">Labs</a></li>
+                                        <li><a href="request.html" class="link-dark rounded">Request</a></li>
+                                        <li><a href="status.html" class="link-dark rounded">Status</a></li>
+                                        <li><a href="#" class="link-dark rounded">Domains</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            </li>
+                            <li class="mb-1">
+                                <button
+                                    class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#dashboard-collapse"
+                                    aria-expanded="false">
+                                    Request
+                                </button>
+                                <div class="collapse" id="dashboard-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="#"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded">new
+                                                request</a></li>
+                                        <li><a href="#"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded">on
+                                                going request</a></li>
+                                        <li><a href="#"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded">completed
+                                                request</a></li>
+                                        <li><a href="#"
+                                                class="link-body-emphasis d-inline-flex text-decoration-none rounded">request
+                                                history</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="mb-1">
+                                <button
+                                    class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false" href="message.html">
+                                    Message
+                                </button>
+                            </li>
+
+                            </li>
+                            <li class="border-top  my-3 "></li>
+                            <li class="mb-1">
+                                <button
+                                    class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                                    data-bs-toggle="collapse" data-bs-target="#account-collapse" aria-expanded="false">
+                                    Account
+                                </button>
+                                <div class="collapse" id="account-collapse">
+                                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                        <li><a href="profile.html"
+                                                class="link-dark d-inline-flex text-decoration-none rounded">Profile</a>
+                                        </li>
+                                        <li><a href="#"
+                                                class="link-dark d-inline-flex text-decoration-none rounded">Settings</a>
+                                        </li>
+                                        <li><a href="#"
+                                                class="link-dark d-inline-flex text-decoration-none rounded">Log out</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-md-9 col-two">
+              <div class="navbar bg-light">
+                <div class="container-custom">
+                    <div class="d-flex align-items-center">
+                        <h1 class="flex-grow-1 px-4">{{lab.name}} details</h1>
+                        <form class="form-inline my-2 my-lg-0">
+                            <div class="input-group">
+                                <input class="form-control mr-sm-2" type="text" placeholder="Search" id="searchInput" aria-label="Search">
+                                <button class="btn btn-outline-dark my-2 my-sm-0" type="button" onclick="searchEmployee()">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+ 
+      <div class="col">
+        <section class="main">
+          <div class="users">
+            <div class="row">
+              <div class="col-4">
+                <div class="card">
+                  <h4>Total</h4>
+                  <p id="totalNumber" class="number">{{ total }}</p>
+                  <button class="btn btn-dark btn-view3" onclick="blinkEmployeeList()">View</button>     
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card">
+                  <h4>Projects</h4>
+                  <p id="projectNumber1" class="number">{{ projects_total }}</p>
+                  <button onclick="renderTo()" class="btn btn-dark btn-view2">View</button>
+                </div>
+              </div>
+              <div class="col-4">
+                <div class="card">
+                  <h4>Officer</h4>
+                  <p id="officerid" class="number">{{ lab.head.username }}</p>
+                  <button class="btn btn-dark btn-view1" data-head-name = "{{ lab.head.username }}" data-head-designation ="{{ lab.head.designation }}" data-head-domain="{{ lab.head.domain }}" data-bs-toggle="offcanvas" data-bs-target="#sidebarOffcanvas">View</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="main">
+          <section class="employee">
+            <div class="employee-list">
+              <div class="heading">
+                <div class="row">
+                  <div class="col">
+                    <h1>Employee List</h1>
+                  </div>
+                  <div class="col">
+                    <div class="dropdown sort-button">
+                      <button class="btn btn-dark dropdown-toggle" type="button" id="sortByDropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sort By
+                      </button>
+                      {% if request.user in chief_user%}
+                      <button class="btn btn-dark edit-button">Edit</button> 
+                      {% endif %}
+                      <div class="dropdown-menu" aria-labelledby="sortByDropdown">
+                        <button class="btn btn-dark dropdown-item" onclick="sortEmployee('Online')">Online</button>
+                        <button class="btn btn-dark dropdown-item" onclick="sortEmployee('Leave')">Offline</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="table-container">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Designation</th>
+                      <th>Domain</th>
+                      <th>Details</th>
+                    </tr>
+                  </thead>
+                  <tbody id="employeeTableBody">
+                    {% for member in lab.members.all %}
+                      <tr>
+                        <td>{{ member.id }}</td>
+                        <td>{{ member.username }}</td>
+                        <td>{{ member.designation }}</td>
+                        <td>{{ member.domain }}</td>
+                      
+                      <td><button class="btn btn-dark btn-view" data-bs-toggle="offcanvas" data-member-id="{{ member.id }}"  data-member-name="{{ member.username }}" data-member-domain="{{ member.domain }}" data-member-designation="{{ member.designation }}"  data-bs-target="#empsidebarOffcanvas">View</button></td>
+                   
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="empsidebarOffcanvas" aria-labelledby="empsidebarOffcanvasLabel">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="empsidebarOffcanvasLabel">Details</h4>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Employee Information</h5>
+              <p class="card-text">Name: <span id="sidebarOffcanvasName"></span></p>
+              <p class="card-text">Designation: <span id="sidebarOffcanvasDesignation"></span></p>
+              <p class="card-text">Domain: <span id="sidebarOffcanvasDomain"></span></p>
+
+              {% comment %} <p class="card-text">Projects Worked on: <span id="sidebarOffcanvasProject1"></span></p>
+              <p class="card-text">Projects Working on: <span id="sidebarOffcanvasProject2"></span></p>
+              <p class="card-text">Projects Going To Work on: <span id="sidebarOffcanvasProject3"></span></p> {% endcomment %}
+
+              <hr>
+              <p class="card-text">Some text describing the employee details.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="editEmployeeModal" tabindex="-1" aria-labelledby="editEmployeeModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="editEmployeeModalLabel">Edit or Create Employee Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Do you want to Add an employee or delete employee or create a new employee?</p>
+            </div>
+            <div class="modal-footer">
+              {% if request.user in chief_user%}
+                <button type="button" class="btn btn-dark" onclick="renderToAddEmployee()">Add Employee</button>
+                <button type="button" class="btn btn-dark" onclick="renderToDeleteEmployee()" >Delete employee</button>
+              {% endif %}    
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="sidebarOffcanvas" aria-labelledby="sidebarOffcanvasLabel">
+        <div class="offcanvas-header">
+          <h4 class="offcanvas-title" id="sidebarOffcanvasLabel">Details</h4>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Officer Information</h5>
+              <p class="card-text">Name: <span id="sidebarOffcanvasHeadName"></span></p>
+              <p class="card-text">Designation: <span id="sidebarOffcanvasHeadDesignation"></span></p>
+              <p class="card-text">Domain: <span id="sidebarOffcanvasHeadDomain"></span></p>
+              <hr>
+              <p class="card-text">Some text describing the officer details.</p>
+              {% if request.user in chief_user%}
+              <button onclick="renderToEditHead()" class="btn btn-dark edit-button">Change lab Head</button>   
+              {% endif %}       
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/js/emplab.js"></script>
+
+<script>
+  var templateURL;
+  function renderTo(){
+    templateURL= "{% url 'CommRequests:project' lab.id %}";
+    window.location.href=templateURL;
+  }
+
+  function renderToAddEmployee(){
+    templateURL= "{% url 'CommRequests:addemp' lab.id %}";
+    window.location.href=templateURL;
+
+  }
+  function renderToDeleteEmployee(){
+    templateURL= "{% url 'CommRequests:delemp' lab.id %}";
+    window.location.href=templateURL;
+  }
+  function renderToEditHead(){
+    templateURL= "{% url 'CommRequests:addhead' lab.id %}";
+    window.location.href=templateURL;
+    
+  }
+// Retrieve the sidebar and employee details elements
+const sidebar = document.getElementById('empsidebarOffcanvas');
+const membersNameElement = document.getElementById('sidebarOffcanvasName');
+const membersDesignationElement = document.getElementById('sidebarOffcanvasDesignation');
+const membersDomainElement = document.getElementById('sidebarOffcanvasDomain');
+
+// Attach a click event listener to the "View Details" buttons
+const viewDetailsButtons = document.getElementsByClassName('btn btn-dark btn-view');
+Array.from(viewDetailsButtons).forEach(button => {
+  button.addEventListener('click', () => {
+ 
+    const membersName = button.getAttribute('data-member-name');
+    const membersDesignation = button.getAttribute('data-member-designation');
+    const membersDomain = button.getAttribute('data-member-domain');
+
+    // Update the sidebar with the members details
+    membersNameElement.textContent = membersName;
+    membersDesignationElement.textContent =membersDesignation;
+    membersDomainElement.textContent=membersDomain;
+    
+    // Show the sidebar
+    sidebar.classList.add('show');
+  });
+});
+
+// Retrieve the sidebar and head details elements
+const sidebar1 = document.getElementById('sidebarOffcanvas');
+const headNameElement = document.getElementById('sidebarOffcanvasHeadName');
+const headDesignationElement = document.getElementById('sidebarOffcanvasHeadDesignation');
+const headDomainElement = document.getElementById('sidebarOffcanvasHeadDomain');
+
+// Attach a click event listener to the "View Details" buttons
+const viewDetailsButtons1 = document.getElementsByClassName('btn btn-dark btn-view1');
+Array.from(viewDetailsButtons1).forEach(button => {
+  button.addEventListener('click', () => {
+ 
+    const headName = button.getAttribute('data-head-name');
+    const headDesignation = button.getAttribute('data-head-designation');
+    const headDomain = button.getAttribute('data-head-domain');
+
+    // Update the sidebar with the head details
+    headNameElement.textContent = headName;
+    headDesignationElement.textContent =headDesignation;
+    headDomainElement.textContent=headDomain;
+    
+    // Show the sidebar
+    sidebar1.classList.add('show');
+  });
+});
+
+
+</script>
+</body>
+</html>

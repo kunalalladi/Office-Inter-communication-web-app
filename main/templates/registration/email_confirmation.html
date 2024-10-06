@@ -1,0 +1,15 @@
+{% autoescape off %}
+Welcome to project!
+
+Hello, Admin!
+
+FirstName: {{fname1}}
+LastName: {{lname1}}
+username: {{username1}}
+email: {{email1}}
+designation: {{designation1}}
+
+please confirm the New user by clicking on the following link.
+
+Confirmation link: http://{{ domain }}{%url 'main:activate' uidb64=uid token=token %}
+{% endautoescape %}
